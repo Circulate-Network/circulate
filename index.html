@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +6,7 @@
   <title>Circulate</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,300&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body {
@@ -29,37 +28,35 @@
       padding: 52px 52px 44px;
       box-shadow: 0 24px 64px rgba(0,0,0,0.25), 0 4px 16px rgba(0,0,0,0.12);
     }
-    p {
+
+    /* ---- LETTER ---- */
+    .letter-section p {
       font-size: 16px;
       font-weight: 300;
       line-height: 1.85;
       color: #1A2E42;
       margin-bottom: 22px;
     }
-    .product-list {
-      margin: 0 0 22px;
-      padding: 0;
-      list-style: none;
+    .product-section { margin-bottom: 32px; }
+    .product-header { margin-bottom: 6px; }
+    .product-header a {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1F699E;
+      text-decoration: none;
     }
-    .product-list li {
+    .product-header a:hover { text-decoration: underline; }
+    .product-sub {
+      font-size: 14px;
+      color: #6A8FAF;
+      margin-bottom: 10px;
+    }
+    .product-section p {
       font-size: 16px;
       font-weight: 300;
       line-height: 1.85;
       color: #1A2E42;
-      padding: 2px 0;
-    }
-    .product-list a {
-      font-weight: 500;
-      color: #1F699E;
-      text-decoration: none;
-    }
-    .product-list a:hover {
-      text-decoration: underline;
-    }
-    hr {
-      border: none;
-      border-top: 1px solid #E8EEF4;
-      margin: 28px 0;
+      margin-bottom: 0;
     }
     .sig {
       font-size: 14px;
@@ -69,43 +66,256 @@
       display: block;
       margin-top: 8px;
     }
-    .sig a {
-      color: #1F699E;
-      text-decoration: none;
-    }
+    .sig a { color: #1F699E; text-decoration: none; }
     .sig a:hover { text-decoration: underline; }
+
+    /* ---- DIVIDER ---- */
+    hr {
+      border: none;
+      border-top: 1px solid #E8EEF4;
+      margin: 32px 0;
+    }
+
+    /* ---- FORM ---- */
+    .form-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #1A2E42;
+      margin-bottom: 6px;
+    }
+    .form-intro {
+      font-size: 14px;
+      font-weight: 300;
+      color: #6A8FAF;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+    .form-group { margin-bottom: 24px; }
+    .form-section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #1F699E;
+      margin-bottom: 14px;
+      display: block;
+    }
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: 400;
+      color: #1A2E42;
+      margin-bottom: 6px;
+      line-height: 1.5;
+    }
+    textarea, input[type="email"] {
+      width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 300;
+      color: #1A2E42;
+      background: #F7F9FC;
+      border: 1px solid #DDE4EE;
+      border-radius: 8px;
+      padding: 12px 14px;
+      resize: vertical;
+      transition: border-color 0.2s;
+      line-height: 1.6;
+    }
+    textarea:focus, input[type="email"]:focus {
+      outline: none;
+      border-color: #1F699E;
+      background: #fff;
+    }
+    textarea { min-height: 80px; }
+    input[type="email"] { min-height: 44px; resize: none; }
+
+    .email-row {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .checkbox-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .checkbox-row input[type="checkbox"] {
+      margin-top: 3px;
+      accent-color: #1F699E;
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .checkbox-row label {
+      margin-bottom: 0;
+      font-size: 14px;
+      color: #4A6080;
+      font-weight: 300;
+    }
+
+    .submit-btn {
+      width: 100%;
+      background: #1F699E;
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      border: none;
+      border-radius: 8px;
+      padding: 14px 24px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .submit-btn:hover { background: #185885; }
+
     @media (max-width: 480px) {
-      .card { padding: 36px 28px 32px; }
-      p, .product-list li { font-size: 15px; }
+      .card { padding: 36px 24px 32px; }
     }
   </style>
 </head>
 <body>
   <div class="card">
 
-    <p>I'm building this because I continue to watch capable, generous people creating alone without the infrastructure we're given when hired in a traditional sense. The wellness coach needs an accountant. The accountant has an idea for an app and needs a mentor. The engineering mentor needs a primary care doctor. The primary doctor needs an eco-friendly architect. The architect needs a wellness coach. Science shows that all of these people are 1 or 2 degrees from each other. This is where we help networks appear.</p>
+    <!-- FOUNDER LETTER -->
+    <div class="letter-section">
+      <p>The wellness coach needs an accountant. The accountant needs a mentor. The mentor needs a doctor. The doctor needs an architect. The architect needs a wellness coach. They're all 1 or 2 degrees from each other - and most of them don't know it yet.</p>
+      <p>This is what I'm building toward.</p>
+      <p>As I continue to watch capable, generous people creating alone - without the infrastructure that comes with traditional employment - I keep seeing the same gap. DayBalancer, Appear Network, and 2Gather are one thing: infrastructure for healthy circulation.</p>
+    </div>
 
-    <p>DayBalancer, Appear Network, and Gather are one thing: infrastructure for healthy circulation.</p>
+    <div class="product-section">
+      <div class="product-header"><a href="https://app.daybalancer.com/" target="_blank">DayBalancer</a></div>
+      <div class="product-sub">Healthy circulation of body and mind</div>
+      <p>Helping you tap into daily sources of joy by applying your skills to serve what is needed in the moment - all guided by your values.</p>
+    </div>
 
-    <ul class="product-list">
-      <li><a href="https://app.daybalancer.com" target="_blank">DayBalancer</a> - healthy circulation of body and mind</li>
-      <li><a href="https://appear.network" target="_blank">Appear Network</a> - healthy circulation of values within a small network</li>
-      <li><a href="https://2gather.network" target="_blank">2Gather</a> - healthy circulation of values within community</li>
-    </ul>
+    <div class="product-section">
+      <div class="product-header"><a href="https://appear.network/" target="_blank">Appear Network</a></div>
+      <div class="product-sub">Healthy circulation of values within a small network</div>
+      <p>Helping your network show up for each other - and helping you build one if you're starting fresh. People here give and receive with people they know - skills, time, connections, care. Show up as yourself. Think a compatible matching app for your network 🌐 Everyone is accessible - compatible people find each other based on what they have and what they need. Advanced features available for those who want to do more.</p>
+    </div>
 
-    <p>DayBalancer helps you tap into daily sources of joy by applying your skills to serve what is needed in the moment - all guided by your values.</p>
+    <div class="product-section">
+      <div class="product-header"><a href="https://2gather.network/" target="_blank">2Gather</a></div>
+      <div class="product-sub">Healthy circulation of values within community</div>
+      <p>For people building communities, groups, and teams - customize your space to match compatible people for paid, volunteer, or board roles, and use AI to evaluate team fit. Team intelligence helps you build and sustain projects with the right people. Priced per build.</p>
+    </div>
 
-    <p>Appear helps your network show up for each other - and helps you build one if you're starting fresh. People here give and receive with people they know - skills, time, connections, care. Show up as yourself. Think a compatible matching app for your network 🌐 Everyone is accessible - compatible people find each other based on what they have and what they need. Advanced features available for those who want to do more.</p>
-
-    <p>For people building communities, groups, and teams, customize your space to match compatible people for paid, volunteer, or board roles, and use AI to evaluate team fit. Team intelligence helps you build and sustain projects with the right people. Priced per build.</p>
-
-    <p>Money circulates here, but so does time, skill, care, and presence. Circulation comes in many forms, from different people. 700+ people are already experimenting with this new form of relationship. Come join us.</p>
+    <div class="letter-section">
+      <p>Money circulates here, but so does time, skill, care, and presence. Circulation comes in many forms, from different people. 700+ people are already experimenting with this new form of relationship. Come join us.</p>
+      <span class="sig">Jessie Upp, Founding Co-Creator<br>
+      <a href="mailto:hello@appear.network">hello@appear.network</a></span>
+    </div>
 
     <hr>
 
-    <span class="sig">Jessie Upp, Founding Co-Creator<br>
-    <a href="mailto:hello@appear.network">hello@appear.network</a></span>
+    <!-- INTAKE FORM -->
+    <div class="form-title">Circulation intake</div>
+    <p class="form-intro">Ten minutes. Honest answers. A clearer picture of where things flow and where they don't.</p>
+
+    <div class="form-group">
+      <span class="form-section-label">On self</span>
+
+      <label>When did you last feel like your day was actually yours?</label>
+      <textarea id="q1"></textarea>
+
+      <label style="margin-top:16px;">Do you know what you'd do if money weren't a factor?</label>
+      <textarea id="q2"></textarea>
+
+      <label style="margin-top:16px;">Can you name three things that reliably give you energy right now?</label>
+      <textarea id="q3"></textarea>
+    </div>
+
+    <div class="form-group">
+      <span class="form-section-label">On network</span>
+
+      <label>When you need help, do you know exactly who to call - or do you hesitate?</label>
+      <textarea id="q4"></textarea>
+
+      <label style="margin-top:16px;">Is there someone in your life who needs exactly what you're good at?</label>
+      <textarea id="q5"></textarea>
+
+      <label style="margin-top:16px;">How often do you give or receive something that isn't money?</label>
+      <textarea id="q6"></textarea>
+    </div>
+
+    <div class="form-group">
+      <span class="form-section-label">On community</span>
+
+      <label>Are you building something right now - and do you have the people around it that you need?</label>
+      <textarea id="q7"></textarea>
+
+      <label style="margin-top:16px;">Do you have a group you show up for regularly that gives back?</label>
+      <textarea id="q8"></textarea>
+
+      <label style="margin-top:16px;">Is there a community you want to build but haven't started?</label>
+      <textarea id="q9"></textarea>
+    </div>
+
+    <div class="form-group">
+      <span class="form-section-label">The blockage question</span>
+      <label>Where does life feel stuck right now - in yourself, in your relationships, or in something you're trying to build?</label>
+      <textarea id="q10" style="min-height:100px;"></textarea>
+    </div>
+
+    <hr>
+
+    <div class="email-row">
+      <label for="user-email">Your email address</label>
+      <input type="email" id="user-email" placeholder="you@example.com">
+    </div>
+
+    <div class="checkbox-row">
+      <input type="checkbox" id="send-copy" checked>
+      <label for="send-copy">Send a copy to Circulate - someone will read it and reach out about next steps</label>
+    </div>
+
+    <button class="submit-btn" onclick="submitForm()">Send my answers</button>
 
   </div>
+
+  <script>
+    function submitForm() {
+      const email = document.getElementById('user-email').value.trim();
+      const sendCopy = document.getElementById('send-copy').checked;
+
+      if (!email) {
+        alert('Add your email address so we can send your answers.');
+        return;
+      }
+
+      const questions = [
+        'When did you last feel like your day was actually yours?',
+        'Do you know what you\'d do if money weren\'t a factor?',
+        'Can you name three things that reliably give you energy right now?',
+        'When you need help, do you know exactly who to call - or do you hesitate?',
+        'Is there someone in your life who needs exactly what you\'re good at?',
+        'How often do you give or receive something that isn\'t money?',
+        'Are you building something right now - and do you have the people around it that you need?',
+        'Do you have a group you show up for regularly that gives back?',
+        'Is there a community you want to build but haven\'t started?',
+        'Where does life feel stuck right now - in yourself, in your relationships, or in something you\'re trying to build?'
+      ];
+
+      let body = 'Circulation intake\n\n';
+      questions.forEach((q, i) => {
+        const answer = document.getElementById('q' + (i + 1)).value.trim() || '(no answer)';
+        body += q + '\n' + answer + '\n\n';
+      });
+
+      const to = sendCopy ? email + ',hello@circulate.network' : email;
+      const subject = 'My circulation intake';
+      const mailto = 'mailto:' + to
+        + '?subject=' + encodeURIComponent(subject)
+        + '&body=' + encodeURIComponent(body);
+
+      window.location.href = mailto;
+    }
+  </script>
+
 </body>
 </html>
