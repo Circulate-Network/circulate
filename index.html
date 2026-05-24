@@ -344,30 +344,59 @@
   </div>
 
   <script>
-    function submitForm() {
+    async function submitForm() {
       const email = document.getElementById('user-email').value.trim();
       const sendCopy = document.getElementById('send-copy').checked;
-      if (!email) { alert('Add your email address so we can send your answers.'); return; }
+      if (!email) { alert('Please add your email address so we can send your answers.'); return; }
+
+      const btn = document.querySelector('.submit-btn');
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+
       const questions = [
-        'When did you last feel like your day was yours?',
-        'How would you be living your days if money wasn\'t a factor?',
-        'Can you name three things that reliably give you energy right now?',
-        'When you need help, do you know exactly who to call? And do you hesitate?',
-        'Is there someone in your life who needs what you\'re good at?',
-        'How often do you give or receive something that isn\'t money?',
-        'Do you have a third place you call your community?',
-        'Do you have a group you show up for regularly that also gives back?',
-        'Do you have a local community project that you\'re inspired by right now?',
-        'Where does life feel stuck right now - in yourself, in your relationships, or in something you\'re trying to build?'
+        "When did you last feel like your day was yours?",
+        "How would you be living your days if money wasn't a factor?",
+        "Can you name three things that reliably give you energy right now?",
+        "When you need help, do you know exactly who to call? And do you hesitate?",
+        "Is there someone in your life who needs what you're good at?",
+        "How often do you give or receive something that isn't money?",
+        "Do you have a third place you call your community?",
+        "Do you have a group you show up for regularly that also gives back?",
+        "Do you have a local community project that you're inspired by right now?",
+        "Where does life feel stuck right now - in yourself, in your relationships, or in something you're trying to build?"
       ];
+
       let body = 'Circulation intake\n\n';
       questions.forEach((q, i) => {
         const answer = document.getElementById('q' + (i + 1)).value.trim() || '(no answer)';
         body += q + '\n' + answer + '\n\n';
       });
-      const to = sendCopy ? email + ',jessie@appear.network' : email;
-      const subject = 'My circulation intake';
-      window.location.href = 'mailto:' + to + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+
+      try {
+        const res = await fetch('https://hook.us1.make.com/dc221a2q1suj5tfspday6gfoitik7o06', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            userEmail: email,
+            sendCopy: sendCopy,
+            subject: 'Circulation intake',
+            body: body
+          })
+        });
+
+        if (res.ok) {
+          btn.textContent = '✓ Sent';
+          btn.style.background = '#2a7a4e';
+          questions.forEach((_, i) => { document.getElementById('q' + (i + 1)).value = ''; });
+          document.getElementById('user-email').value = '';
+        } else {
+          throw new Error('Server error');
+        }
+      } catch (e) {
+        btn.disabled = false;
+        btn.textContent = 'Send my answers';
+        alert('Something went wrong. Please try again.');
+      }
     }
   </script>
 
