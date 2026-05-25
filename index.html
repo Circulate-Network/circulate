@@ -1,9 +1,5 @@
-<!-- V2 | circulate.network/index.html
-  - Removed "Circulate" h1 title
-  - Changed connector header to "One profile. Start anywhere to circulate."
-  - Linked "1 or 2 degrees" to appear.network/dl/GEO
-  - Updated closing paragraph (money/circulation)
-  - Removed hr above Circulation intake
+<!-- V4 | circulate.network/index.html
+  - Added mode: no-cors to fetch to fix CORS browser block
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -375,6 +371,7 @@
       try {
         await fetch('https://hook.us1.make.com/dc221a2q1suj5tfspday6gfoitik7o06', {
           method: 'POST',
+          mode: 'no-cors',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             userEmail: email,
