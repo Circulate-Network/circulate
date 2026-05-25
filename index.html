@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- V11 | index.html
+<!-- V12 | index.html
   - Fixed broken comment showing as visible text on page
   - Updated circulation logo to 4-arrow SVG
   - Removed "Independents - apart, together" from footer
@@ -36,7 +36,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Circulate - Map Your Flow</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%2310B981'/><stop offset='33%25' stop-color='%233B82F6'/><stop offset='66%25' stop-color='%238B5CF6'/><stop offset='100%25' stop-color='%23F43F5E'/></linearGradient></defs><circle cx='18' cy='18' r='16' fill='white' stroke='url(%23g)' stroke-width='3'/></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%2310B981'/><stop offset='33%25' stop-color='%233B82F6'/><stop offset='66%25' stop-color='%238B5CF6'/><stop offset='100%25' stop-color='%23F43F5E'/></linearGradient></defs><circle cx='18' cy='18' r='16' fill='transparent' stroke='url(%23g)' stroke-width='3'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -281,8 +281,8 @@
     }
     .circle-scroll::-webkit-scrollbar { display: none; }
     .circle-card {
-      background: #F7F9FC;
-      border: 1px solid #E8EEF4;
+      background: #D1D9E0;
+      border: 1px solid #B0BEC5;
       border-radius: 16px;
       padding: 28px 24px;
       min-width: 180px;
@@ -303,11 +303,11 @@
       font-size: 15px;
       font-weight: 700;
       margin-bottom: 4px;
-      color: #1A2E42;
+      color: #0F172A;
     }
     .circle-card p {
       font-size: 12px;
-      color: #6A8FAF;
+      color: #334155;
     }
     .circle-arrow {
       color: #6A8FAF;
@@ -814,6 +814,27 @@
       margin-top: 10px;
       transition: border-color 0.2s;
     }
+    .qa-btn-row { display:flex; gap:12px; margin-top:24px; }
+    .qa-book-btn {
+      flex:1;
+      background: #FFFFFF;
+      color: #0B0F1A;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      border: 1.5px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 12px 16px;
+      cursor: pointer;
+      text-decoration: none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      transition: background 0.2s;
+    }
+    .qa-book-btn:hover { background: #F1F5F9; }
+    .qa-copy-btn { flex:1; }
     .qa-close-btn:hover { border-color: var(--muted); }
   </style>
 </head>
@@ -865,7 +886,7 @@
   </section>
 
   <!-- CIRCLE OF MUTUAL DEPENDENCE -->
-  <div style="padding: 0 0 80px;">
+  <div style="padding: 0;">
     <div class="circle-section">
       <p class="section-label">The circle of mutual dependence</p>
       <div class="circle-scroll">
@@ -1168,13 +1189,16 @@
       <h3>Your answers</h3>
       <p class="qa-hint">Check your email for a copy before closing. You can also copy your answers and paste them into the booking notes when scheduling a call.</p>
       <div id="qa-content"></div>
-      <button class="qa-copy-btn" onclick="copyAnswers()">Copy answers</button>
-      <div style="margin-top:20px;">
-        <label style="font-size:13px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:8px;">Paste your answers for the call (optional)</label>
-        <textarea id="booking-notes" maxlength="1000" placeholder="Paste your answers here so Jessie can prepare..." style="width:100%;min-height:100px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;line-height:1.6;resize:vertical;"></textarea>
-        <div style="font-size:12px;color:var(--muted);margin-top:4px;text-align:right;" id="char-count">0 / 1000</div>
+      <div class="qa-btn-row">
+        <button class="qa-copy-btn" onclick="copyAnswers()">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="white" stroke-width="1.5"/><path d="M3 11V3a1 1 0 011-1h8" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Copy my answers
+        </button>
+        <a href="https://cal.com/jessieupp/25min" target="_blank" class="qa-book-btn">
+          <svg width="15" height="15" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="12" rx="2" stroke="#0B0F1A" stroke-width="1.5"/><path d="M1 7h14" stroke="#0B0F1A" stroke-width="1.5"/><path d="M5 1v4M11 1v4" stroke="#0B0F1A" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Book a call
+        </a>
       </div>
-      <a id="book-btn" href="https://cal.com/jessieupp/25min" target="_blank" class="qa-copy-btn" style="display:block;text-align:center;text-decoration:none;margin-top:16px;">Book a call with Jessie ↗</a>
       <button class="qa-close-btn" onclick="closePopup()">Close</button>
     </div>
   </div>
@@ -1302,6 +1326,6 @@
       });
     }
   </script>
-<!-- V11 -->
+<!-- V12 -->
 </body>
 </html>
