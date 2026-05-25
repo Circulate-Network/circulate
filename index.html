@@ -6,6 +6,8 @@
   - Removed "Independents - apart, together" from footer
   - Swapped Make webhook for Cloudflare Worker URL
   - Removed mode: no-cors - Worker handles CORS, response is now readable
+  - Fixed: submitForm now async (was breaking chips and navigation)
+  - All fields now optional
 -->
 <head>
   <meta charset="UTF-8">
@@ -1030,10 +1032,10 @@
       window.scrollTo({ top: document.getElementById('form').offsetTop - 80, behavior: 'smooth' });
     }
 
-    function submitForm() {
+    async function submitForm() {
       const email = document.getElementById('user-email').value.trim();
       const sendCopy = document.getElementById('send-copy').checked;
-      if (!email) { alert('Add your email address so we can send your answers.'); return; }
+      
 
       let body = 'Circulation intake\n\n';
       body += 'TEND TO SELF\n';
