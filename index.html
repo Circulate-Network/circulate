@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- V10 | index.html
+<!-- V11 | index.html
   - Fixed broken comment showing as visible text on page
   - Updated circulation logo to 4-arrow SVG
   - Removed "Independents - apart, together" from footer
@@ -31,12 +31,19 @@
   - Fixed favicon to rainbow circle white fill
   - Added booking button + paste field to popup
   - White background on circle section and product cards
+  - Logo teal-to-blue gradient ring, all-green arrows
+  - Favicon transparent with gradient outline
+  - Circle cards distinct colors + return arc
+  - Accessible colors on product links
+  - Form card white bg
+  - Removed Jessie checkbox
+  - Popup: gradient buttons side by side, calendar icon, no paste field
 -->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Circulate - Map Your Flow</title>
-  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%2310B981'/><stop offset='33%25' stop-color='%233B82F6'/><stop offset='66%25' stop-color='%238B5CF6'/><stop offset='100%25' stop-color='%23F43F5E'/></linearGradient></defs><circle cx='18' cy='18' r='16' fill='white' stroke='url(%23g)' stroke-width='3'/></svg>">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%2310B981'/><stop offset='33%25' stop-color='%233B82F6'/><stop offset='66%25' stop-color='%238B5CF6'/><stop offset='100%25' stop-color='%23F43F5E'/></linearGradient></defs><circle cx='18' cy='18' r='16' fill='transparent' stroke='url(%23g)' stroke-width='3'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -93,9 +100,9 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      border: 2px solid transparent;
+      border: 2.5px solid transparent;
       background: linear-gradient(var(--bg), var(--bg)) padding-box,
-                  var(--grad) border-box;
+                  linear-gradient(135deg, #10B981, #3B82F6) border-box;
     }
     .logo-arrows {
       position: absolute;
@@ -368,6 +375,8 @@
     .form-section { padding: 96px 24px; }
     .form-inner { max-width: 780px; margin: 0 auto; }
     .form-card {
+      background: #FFFFFF !important;
+      color: #1A2E42;
       background: var(--surface);
       border: 1px solid var(--border);
       border-radius: 20px;
@@ -761,9 +770,10 @@
       color: var(--text);
       line-height: 1.6;
     }
+    .qa-btn-row { display:flex; gap:12px; margin-top:24px; }
     .qa-copy-btn {
-      width: 100%;
-      background: var(--green);
+      flex:1;
+      background: linear-gradient(135deg, #10B981, #3B82F6, #8B5CF6);
       color: #fff;
       font-family: 'DM Sans', sans-serif;
       font-size: 15px;
@@ -772,10 +782,35 @@
       border-radius: 8px;
       padding: 12px 20px;
       cursor: pointer;
-      margin-top: 24px;
-      transition: background 0.2s;
+      transition: opacity 0.2s;
+      text-align:center;
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
     }
-    .qa-copy-btn:hover { background: #0ea371; }
+    .qa-copy-btn:hover { opacity: 0.88; }
+    .qa-book-btn {
+      flex:1;
+      background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      cursor: pointer;
+      transition: opacity 0.2s;
+      text-align:center;
+      text-decoration:none;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+    }
+    .qa-book-btn:hover { opacity: 0.88; }
     .qa-close-btn {
       width: 100%;
       background: transparent;
@@ -801,10 +836,10 @@
       <div class="logo-icon">
         <div class="logo-ring"></div>
         <svg class="logo-arrows" width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <path d="M5 5.5 H13 L11 3.5" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M14.5 5 V13 L16.5 11" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M15 14.5 H7 L9 16.5" stroke="#8B5CF6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M5.5 15 V7 L3.5 9" stroke="#F43F5E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5 5.5 H13 L11 3.5" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M14.5 5 V13 L16.5 11" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15 14.5 H7 L9 16.5" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M5.5 15 V7 L3.5 9" stroke="#10B981" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <span class="nav-wordmark">circulate</span>
@@ -838,35 +873,47 @@
       <p class="section-label">The circle of mutual dependence</p>
       <div class="circle-scroll">
         <div class="circle-card">
-          <div class="circle-icon" style="background:rgba(16,185,129,0.15);">🌿</div>
+          <div class="circle-icon" style="background:#D1FAE5;border:1.5px solid #6EE7B7;">🌿</div>
           <h3>Wellness coach</h3>
           <p>Needs accountant</p>
         </div>
         <div class="circle-arrow">→</div>
         <div class="circle-card">
-          <div class="circle-icon" style="background:rgba(59,130,246,0.15);">🧮</div>
+          <div class="circle-icon" style="background:#DBEAFE;border:1.5px solid #93C5FD;">🧮</div>
           <h3>Accountant</h3>
           <p>Needs mentor</p>
         </div>
         <div class="circle-arrow">→</div>
         <div class="circle-card">
-          <div class="circle-icon" style="background:rgba(139,92,246,0.15);">🎓</div>
+          <div class="circle-icon" style="background:#EDE9FE;border:1.5px solid #C4B5FD;">🎓</div>
           <h3>Mentor</h3>
           <p>Needs doctor</p>
         </div>
         <div class="circle-arrow">→</div>
         <div class="circle-card">
-          <div class="circle-icon" style="background:rgba(244,63,94,0.15);">🩺</div>
+          <div class="circle-icon" style="background:#FFE4E6;border:1.5px solid #FCA5A5;">🩺</div>
           <h3>Doctor</h3>
           <p>Needs architect</p>
         </div>
         <div class="circle-arrow">→</div>
         <div class="circle-card">
-          <div class="circle-icon" style="background:rgba(251,191,36,0.15);">🏗️</div>
+          <div class="circle-icon" style="background:#FEF9C3;border:1.5px solid #FDE047;">🏗️</div>
           <h3>Architect</h3>
           <p>Needs wellness coach</p>
         </div>
-        <div class="circle-arrow" style="color:#10B981;">↩</div>
+      </div>
+      <div style="text-align:center;margin-top:20px;">
+        <svg width="100%" height="32" viewBox="0 0 600 32" xmlns="http://www.w3.org/2000/svg" style="max-width:860px;">
+          <defs>
+            <linearGradient id="retGrad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0%" stop-color="#FDE047"/>
+              <stop offset="100%" stop-color="#10B981"/>
+            </linearGradient>
+          </defs>
+          <path d="M570 16 Q300 60 30 16" fill="none" stroke="url(#retGrad)" stroke-width="2" stroke-dasharray="6 4"/>
+          <polygon points="30,10 22,16 30,22" fill="#10B981"/>
+        </svg>
+        <p style="font-size:12px;color:#6A8FAF;margin-top:4px;">The circle completes - Architect needs a wellness coach</p>
       </div>
     </div>
   </div>
@@ -882,19 +929,19 @@
           <div class="product-icon" style="background:rgba(16,185,129,0.15);padding:0;overflow:hidden;"><img src="https://res.cloudinary.com/glide/image/fetch/f_auto,h_150,c_limit/https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fglide-prod.appspot.com%2Fo%2Ficon-images%252Fanonymous-05255043-007d-48b6-84bf-b7f21cb2ac56.png%3Falt%3Dmedia%26token%3D227af714-e2d8-45df-958b-ff364f6fdc2f" alt="DayBalancer" style="width:100%;height:100%;object-fit:cover;"></div>
           <h3>DayBalancer</h3>
           <p>Start by exploring what you love, what you're good at, where you get your energy, and how to apply your skills to serve what is needed - all guided by your values. Healthy circulation of body and mind.</p>
-          <a href="https://app.daybalancer.com/" target="_blank" class="product-link" style="color:var(--green);">Launch DayBalancer ↗</a>
+          <a href="https://app.daybalancer.com/" target="_blank" class="product-link" style="color:#059669;">Launch DayBalancer ↗</a>
         </div>
         <div class="product-card">
           <div class="product-icon" style="background:rgba(59,130,246,0.15);padding:0;overflow:hidden;"><img src="https://res.cloudinary.com/glide/image/fetch/f_auto,h_150,c_limit/https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fglide-prod.appspot.com%2Fo%2Ficon-images%252Fanonymous-e3926802-d398-43a2-a0cc-48dfb527f428.png%3Falt%3Dmedia%26token%3Db1489e31-7a71-43de-9feb-3d927592d4a9" alt="Appear Network" style="width:100%;height:100%;object-fit:cover;"></div>
           <h3>Appear Network</h3>
           <p>Everyone is accessible. Show up as yourself. Compatible people and opportunities surface within your groups and network. A matching space for your network where people give and receive based on what they have and what they need.</p>
-          <a href="https://appear.network/" target="_blank" class="product-link" style="color:var(--blue);">Launch Appear ↗</a>
+          <a href="https://appear.network/" target="_blank" class="product-link" style="color:#1D4ED8;">Launch Appear ↗</a>
         </div>
         <div class="product-card">
           <div class="product-icon" style="background:rgba(244,63,94,0.15);padding:0;overflow:hidden;"><img src="https://res.cloudinary.com/glide/image/fetch/f_auto,h_150,c_limit/https%3A%2F%2Ffirebasestorage.googleapis.com%2Fv0%2Fb%2Fglide-prod.appspot.com%2Fo%2Ficon-images%252Fanonymous-3cb9285e-93c0-4086-939b-1964597ed61e.png%3Falt%3Dmedia%26token%3Da1b97cec-85be-4978-8595-4d7e1393c050" alt="2Gather" style="width:100%;height:100%;object-fit:cover;"></div>
           <h3>2Gather</h3>
           <p>Member-led gatherings in person and online where people create community impact together. For people building communities, groups, and teams - AI for team intelligence helps build and sustain projects with the right people.</p>
-          <a href="https://2gather.network/" target="_blank" class="product-link" style="color:var(--pink);">Explore 2Gather ↗</a>
+          <a href="https://2gather.network/" target="_blank" class="product-link" style="color:#BE123C;">Explore 2Gather ↗</a>
         </div>
       </div>
     </div>
@@ -1055,11 +1102,6 @@
             <input type="email" class="form-input" id="user-email" placeholder="you@example.com">
           </div>
 
-          <div class="checkbox-row">
-            <input type="checkbox" id="send-copy" checked>
-            <label for="send-copy">Email a copy to Jessie Upp - she will personally read it and reach out about next steps</label>
-          </div>
-
           <div class="step-nav">
             <button class="btn-back" onclick="prevStep(4)">← Back</button>
             <button class="btn-submit" onclick="submitForm()">Send my answers ↗</button>
@@ -1136,13 +1178,16 @@
       <h3>Your answers</h3>
       <p class="qa-hint">Check your email for a copy before closing. You can also copy your answers and paste them into the booking notes when scheduling a call.</p>
       <div id="qa-content"></div>
-      <button class="qa-copy-btn" onclick="copyAnswers()">Copy answers</button>
-      <div style="margin-top:20px;">
-        <label style="font-size:13px;font-weight:500;color:var(--muted);text-transform:uppercase;letter-spacing:0.06em;display:block;margin-bottom:8px;">Paste your answers for the call (optional)</label>
-        <textarea id="booking-notes" maxlength="1000" placeholder="Paste your answers here so Jessie can prepare..." style="width:100%;min-height:100px;background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;line-height:1.6;resize:vertical;"></textarea>
-        <div style="font-size:12px;color:var(--muted);margin-top:4px;text-align:right;" id="char-count">0 / 1000</div>
+      <div class="qa-btn-row">
+        <button class="qa-copy-btn" onclick="copyAnswers()">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="5" y="5" width="9" height="9" rx="1.5" stroke="white" stroke-width="1.5"/><path d="M3 11V3a1 1 0 011-1h8" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Copy my answers
+        </button>
+        <a href="https://cal.com/jessieupp/25min" target="_blank" class="qa-book-btn">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="12" rx="2" stroke="white" stroke-width="1.5"/><path d="M1 7h14" stroke="white" stroke-width="1.5"/><path d="M5 1v4M11 1v4" stroke="white" stroke-width="1.5" stroke-linecap="round"/></svg>
+          Book a call
+        </a>
       </div>
-      <a id="book-btn" href="https://cal.com/jessieupp/25min" target="_blank" class="qa-copy-btn" style="display:block;text-align:center;text-decoration:none;margin-top:16px;">Book a call with Jessie ↗</a>
       <button class="qa-close-btn" onclick="closePopup()">Close</button>
     </div>
   </div>
@@ -1172,7 +1217,7 @@
 
     async function submitForm() {
       const email = document.getElementById('user-email').value.trim();
-      const sendCopy = document.getElementById('send-copy').checked;
+      const sendCopy = true;
       
 
       let body = 'Circulation intake\n\n';
@@ -1253,13 +1298,7 @@
       document.getElementById('qa-overlay').classList.remove('active');
     }
 
-    document.addEventListener('input', function(e) {
-      if (e.target.id === 'booking-notes') {
-        document.getElementById('char-count').textContent = e.target.value.length + ' / 1000';
-        const notes = encodeURIComponent(e.target.value);
-        document.getElementById('book-btn').href = 'https://cal.com/jessieupp/25min?notes=' + notes;
-      }
-    });
+
 
     function copyAnswers() {
       const items = document.querySelectorAll('#qa-content .qa-item');
@@ -1276,6 +1315,6 @@
       });
     }
   </script>
-<!-- V10 -->
+<!-- V11 -->
 </body>
 </html>
