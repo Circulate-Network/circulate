@@ -1,13 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- V4 | index.html
-  - Fixed broken comment showing as visible text on page
-  - Updated circulation logo to 4-arrow SVG
-  - Removed "Independents - apart, together" from footer
-  - Swapped Make webhook for Cloudflare Worker URL
-  - Removed mode: no-cors - Worker handles CORS, response is now readable
-  - Fixed: submitForm now async (was breaking chips and navigation)
-  - All fields now optional
+<!-- V4 | flow.html
+  - 4-arrow circulation logo (properly calculated arc paths)
+  - Removed "Read the letter" button from hero
+  - Reduced section padding 96px to 56px
+  - Confirmation scrolls into view after submit
 -->
 <head>
   <meta charset="UTF-8">
@@ -211,7 +208,7 @@
     .btn-outline:hover { border-color: var(--muted); }
 
     /* ---- SECTION WRAPPER ---- */
-    .section { padding: 96px 24px; }
+    .section { padding: 56px 24px; }
     .section-inner { max-width: 1100px; margin: 0 auto; }
     .section-label {
       font-size: 11px;
@@ -338,7 +335,7 @@
     .product-link:hover { gap: 10px; }
 
     /* ---- MULTI-STEP FORM ---- */
-    .form-section { padding: 96px 24px; }
+    .form.section { padding: 56px 24px; }
     .form-inner { max-width: 780px; margin: 0 auto; }
     .form-card {
       background: var(--surface);
@@ -692,14 +689,14 @@
       <div class="logo-icon">
         <div class="logo-ring"></div>
         <svg class="logo-arrows" width="20" height="20" viewBox="0 0 20 20" fill="none">
-          <!-- top arrow pointing right -->
-          <path d="M5 5.5 H13 L11 3.5" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- right arrow pointing down -->
-          <path d="M14.5 5 V13 L16.5 11" stroke="#3B82F6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- bottom arrow pointing left -->
-          <path d="M15 14.5 H7 L9 16.5" stroke="#8B5CF6" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <!-- left arrow pointing up -->
-          <path d="M5.5 15 V7 L3.5 9" stroke="#F43F5E" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M11.04 4.09 A6 6 0 0 1 15.91 8.96" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M16.64 7.31 L15.91 8.96 L14.66 7.65" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M15.91 11.04 A6 6 0 0 1 11.04 15.91" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M12.35 14.67 L11.04 15.91 L12.69 16.64" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M8.96 15.91 A6 6 0 0 1 4.09 11.04" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M5.34 12.35 L4.09 11.04 L3.37 12.69" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M4.09 8.96 A6 6 0 0 1 8.96 4.09" stroke="#10B981" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M7.65 5.34 L8.96 4.09 L7.31 3.37" stroke="#10B981" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>
       </div>
       <span class="nav-wordmark">circulate</span>
@@ -724,7 +721,6 @@
     </p>
     <div class="hero-btns">
       <a href="#form" class="btn-primary">Map your flow →</a>
-      <a href="/" class="btn-outline">Read the letter</a>
     </div>
   </section>
 
@@ -1032,10 +1028,10 @@
       window.scrollTo({ top: document.getElementById('form').offsetTop - 80, behavior: 'smooth' });
     }
 
-    async function submitForm() {
+    function submitForm() {
       const email = document.getElementById('user-email').value.trim();
       const sendCopy = document.getElementById('send-copy').checked;
-      
+      if (!email) { alert('Add your email address so we can send your answers.'); return; }
 
       let body = 'Circulation intake\n\n';
       body += 'TEND TO SELF\n';
@@ -1065,7 +1061,8 @@
       });
 
       // Show confirmation immediately
-      document.querySelector('.form-card').innerHTML = `
+      const formCard = document.querySelector('.form-card');
+      formCard.innerHTML = `
         <div style="padding:52px;text-align:center;">
           <div style="font-size:40px;margin-bottom:16px;">✓</div>
           <h3 style="font-size:20px;font-weight:700;color:#ffffff;margin-bottom:12px;">Answers sent.</h3>
@@ -1073,17 +1070,15 @@
             ${sendCopy ? 'Jessie will personally read your answers and reach out about next steps.' : 'A copy has been sent to your email.'}
           </p>
         </div>`;
+      formCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
-      try {
-        const res = await fetch('https://circulate.jessieupp.workers.dev', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: params.toString()
-        });
-        if (!res.ok) console.error('Worker error:', await res.text());
-      } catch (err) {
-        console.error('Fetch failed:', err);
-      }
+      // Fire and forget to Worker
+      fetch('https://circulate.jessieupp.workers.dev', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
+      });
     }
   </script>
 <!-- V4 -->
