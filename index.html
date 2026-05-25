@@ -1,5 +1,5 @@
-<!-- V5 | circulate.network/index.html
-  - Switched fetch from JSON to application/x-www-form-urlencoded to bypass CORS preflight
+<!-- V6 | circulate.network/index.html
+  - Removed try/catch entirely - fire and forget fetch, show confirmation immediately
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -368,36 +368,28 @@
       btn.textContent = 'Sending...';
       btn.disabled = true;
 
-      try {
-        const params = new URLSearchParams({
-            userEmail: email,
-            sendCopy: sendCopy,
-            subject: 'Circulation intake',
-            body: body
-          });
+      const params = new URLSearchParams({
+        userEmail: email,
+        sendCopy: sendCopy,
+        subject: 'Circulation intake',
+        body: body
+      });
 
-        await fetch('https://hook.us1.make.com/dc221a2q1suj5tfspday6gfoitik7o06', {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: params.toString()
-        });
+      fetch('https://hook.us1.make.com/dc221a2q1suj5tfspday6gfoitik7o06', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
+      });
 
-        // Show confirmation
-        document.querySelector('.form-card').innerHTML = `
-          <div style="padding:52px;text-align:center;">
-            <div style="font-size:40px;margin-bottom:16px;">✓</div>
-            <h3 style="font-size:20px;font-weight:700;color:#1A2E42;margin-bottom:12px;">Answers sent.</h3>
-            <p style="font-size:16px;font-weight:300;color:#4A6080;line-height:1.7;">
-              ${sendCopy ? 'Jessie will personally read your answers and reach out about next steps.' : 'A copy has been sent to your email.'}
-            </p>
-          </div>`;
-
-      } catch (err) {
-        btn.textContent = 'Send my answers';
-        btn.disabled = false;
-        alert('Something went wrong. Please try again.');
-      }
+      document.querySelector('.form-card').innerHTML = `
+        <div style="padding:52px;text-align:center;">
+          <div style="font-size:40px;margin-bottom:16px;">✓</div>
+          <h3 style="font-size:20px;font-weight:700;color:#1A2E42;margin-bottom:12px;">Answers sent.</h3>
+          <p style="font-size:16px;font-weight:300;color:#4A6080;line-height:1.7;">
+            ${sendCopy ? 'Jessie will personally read your answers and reach out about next steps.' : 'A copy has been sent to your email.'}
+          </p>
+        </div>`;
     }
   </script>
 
