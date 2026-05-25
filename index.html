@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- V5 | index.html
+<!-- V7 | index.html
   - Fixed broken comment showing as visible text on page
   - Updated circulation logo to 4-arrow SVG
   - Removed "Independents - apart, together" from footer
@@ -13,11 +13,18 @@
   - Updated q3, q6 placeholders
   - Updated two question labels
   - Added third radio option to rg7
+  - Fixed scroll on submit - confirmation scrolls into center view
+  - Added Q&A popup on submit with copy button
+  - Added favicon
+  - "1 or 2 degrees" now links to #map
+  - Removed "Read the letter" button
+  - Updated q1 label; added "Months ago or more" option
 -->
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Circulate - Map Your Flow</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 36 36'><circle cx='18' cy='18' r='16' fill='none' stroke='url(%23g)' stroke-width='3'/><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%2310B981'/><stop offset='33%25' stop-color='%233B82F6'/><stop offset='66%25' stop-color='%238B5CF6'/><stop offset='100%25' stop-color='%23F43F5E'/></linearGradient></defs><text x='18' y='23' text-anchor='middle' font-size='16' fill='white'>↻</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
@@ -687,6 +694,88 @@
       footer { flex-direction: column; align-items: flex-start; }
       .footer-links { flex-wrap: wrap; gap: 16px; }
     }
+
+    /* ---- QA POPUP ---- */
+    .qa-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.7);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .qa-overlay.active { display: flex; }
+    .qa-modal {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      width: 100%;
+      max-width: 620px;
+      max-height: 80vh;
+      overflow-y: auto;
+      padding: 36px;
+      position: relative;
+    }
+    .qa-modal h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 6px;
+    }
+    .qa-hint {
+      font-size: 13px;
+      font-weight: 300;
+      color: var(--muted);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+    .qa-item { margin-bottom: 20px; }
+    .qa-q {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .qa-a {
+      font-size: 15px;
+      font-weight: 300;
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .qa-copy-btn {
+      width: 100%;
+      background: var(--green);
+      color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 20px;
+      cursor: pointer;
+      margin-top: 24px;
+      transition: background 0.2s;
+    }
+    .qa-copy-btn:hover { background: #0ea371; }
+    .qa-close-btn {
+      width: 100%;
+      background: transparent;
+      color: var(--muted);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 400;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 20px;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: border-color 0.2s;
+    }
+    .qa-close-btn:hover { border-color: var(--muted); }
   </style>
 </head>
 <body>
@@ -725,11 +814,10 @@
     </div>
     <h1>One profile.<br><span class="grad-text">Three tools to circulate.</span></h1>
     <p class="hero-sub">
-      The wellness coach needs an accountant. The accountant needs a mentor. The mentor needs a doctor. The doctor needs an architect. The architect needs a wellness coach. They're all <a href="https://appear.network/dl/GEO" target="_blank">1 or 2 degrees</a> from each other - and most of them don't know it yet.
+      The wellness coach needs an accountant. The accountant needs a mentor. The mentor needs a doctor. The doctor needs an architect. The architect needs a wellness coach. They're all <a href="#map">1 or 2 degrees</a> from each other - and most of them don't know it yet.
     </p>
     <div class="hero-btns">
       <a href="#form" class="btn-primary">Map your flow →</a>
-      <a href="/" class="btn-outline">Read the letter</a>
     </div>
   </section>
 
@@ -824,7 +912,7 @@
           </div>
 
           <div class="form-q">
-            <label>When did you last feel like your day was yours?</label>
+            <label>When did you last feel like your day was "on your terms"?</label>
             <div class="radio-group" id="rg1">
               <div class="radio-option" onclick="selectRadio('rg1',this,'Today or yesterday')">
                 <div class="radio-dot"></div><span>Today or yesterday</span>
@@ -834,6 +922,9 @@
               </div>
               <div class="radio-option" onclick="selectRadio('rg1',this,'Months ago')">
                 <div class="radio-dot"></div><span>Months ago</span>
+              </div>
+              <div class="radio-option" onclick="selectRadio('rg1',this,'Months ago or more')">
+                <div class="radio-dot"></div><span>Months ago or more</span>
               </div>
             </div>
           </div>
@@ -1030,6 +1121,18 @@
     <span class="footer-copy">© 2026 Circulate Network</span>
   </footer>
 
+
+  <!-- QA POPUP -->
+  <div class="qa-overlay" id="qa-overlay">
+    <div class="qa-modal" id="qa-modal">
+      <h3>Your answers</h3>
+      <p class="qa-hint">Check your email for a copy before closing. You can also copy your answers below.</p>
+      <div id="qa-content"></div>
+      <button class="qa-copy-btn" onclick="copyAnswers()">Copy answers</button>
+      <button class="qa-close-btn" onclick="closePopup()">Close</button>
+    </div>
+  </div>
+
   <script>
     const radioSelections = {};
 
@@ -1060,7 +1163,7 @@
 
       let body = 'Circulation intake\n\n';
       body += 'TEND TO SELF\n';
-      body += 'When did you last feel like your day was yours?\n' + (radioSelections['rg1'] || '(no answer)') + '\n\n';
+      body += 'When did you last feel like your day was "on your terms"?\n' + (radioSelections['rg1'] || '(no answer)') + '\n\n';
       body += 'How would you be living your days if money wasn\'t a factor?\n' + (document.getElementById('q2').value.trim() || '(no answer)') + '\n\n';
       body += 'Three things that reliably give you energy:\n' + (document.getElementById('q3').value.trim() || '(no answer)') + '\n\n';
       body += 'TEND TO YOUR NETWORK\n';
@@ -1086,14 +1189,39 @@
       });
 
       // Show confirmation immediately
-      document.querySelector('.form-card').innerHTML = `
-        <div style="padding:52px;text-align:center;">
+      // Build popup Q&A content
+      const qaQuestions = [
+        { q: 'When did you last feel like your day was "on your terms"?', a: radioSelections['rg1'] || '' },
+        { q: 'How would you be living your days if money wasn\'t a factor?', a: document.getElementById('q2').value.trim() },
+        { q: 'Three things that reliably give you energy', a: document.getElementById('q3').value.trim() },
+        { q: 'When you need help, do you know who to call?', a: radioSelections['rg4'] || '' },
+        { q: 'Someone in your life who needs what you\'re good at', a: document.getElementById('q5').value.trim() },
+        { q: 'Giving or receiving something that doesn\'t relate to money', a: document.getElementById('q6').value.trim() },
+        { q: 'Do you have a third place you call community?', a: radioSelections['rg7'] || '' },
+        { q: 'A group you show up for that also gives back', a: document.getElementById('q8').value.trim() },
+        { q: 'A local community project you\'re inspired by', a: document.getElementById('q9').value.trim() },
+        { q: 'Where does life feel stuck right now?', a: document.getElementById('q10').value.trim() },
+      ];
+      const qaContent = document.getElementById('qa-content');
+      qaContent.innerHTML = qaQuestions.filter(item => item.a).map(item => `
+        <div class="qa-item">
+          <div class="qa-q">${item.q}</div>
+          <div class="qa-a">${item.a}</div>
+        </div>`).join('');
+      document.getElementById('qa-overlay').classList.add('active');
+
+      const formCard = document.querySelector('.form-card');
+      formCard.innerHTML = `
+        <div id="confirm-msg" style="padding:52px;text-align:center;">
           <div style="font-size:40px;margin-bottom:16px;">✓</div>
           <h3 style="font-size:20px;font-weight:700;color:#ffffff;margin-bottom:12px;">Answers sent.</h3>
           <p style="font-size:16px;font-weight:300;color:#7A8AA0;line-height:1.7;">
-            ${sendCopy ? 'Jessie will personally read your answers and reach out about next steps.' : 'A copy has been sent to your email.'}
+            ${sendCopy ? 'Jessie will personally read your answers and reach out about next steps.' : 'Your answers have been recorded.'}
           </p>
         </div>`;
+      setTimeout(() => {
+        document.getElementById('confirm-msg').scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 50);
 
       try {
         const res = await fetch('https://circulate.jessieupp.workers.dev', {
@@ -1106,7 +1234,26 @@
         console.error('Fetch failed:', err);
       }
     }
+
+    function closePopup() {
+      document.getElementById('qa-overlay').classList.remove('active');
+    }
+
+    function copyAnswers() {
+      const items = document.querySelectorAll('#qa-content .qa-item');
+      let text = 'My circulation answers\n\n';
+      items.forEach(item => {
+        const q = item.querySelector('.qa-q').textContent;
+        const a = item.querySelector('.qa-a').textContent;
+        text += q + '\n' + a + '\n\n';
+      });
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.querySelector('.qa-copy-btn');
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = 'Copy answers', 2000);
+      });
+    }
   </script>
-<!-- V5 -->
+<!-- V7 -->
 </body>
 </html>
