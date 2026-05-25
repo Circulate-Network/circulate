@@ -1,5 +1,6 @@
-<!-- V7 | circulate.network/index.html
-  - Show confirmation immediately before fetch resolves - true fire and forget
+<!-- V8 | circulate.network/index.html
+  - Fixed confirmation message - was targeting .form-card which doesn't exist in index.html
+  - Now inserts confirmation after checkbox row and hides submit button
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -375,15 +376,17 @@
         body: body
       });
 
-      // Show confirmation immediately - don't wait for fetch
-      document.querySelector('.form-card').innerHTML = `
-        <div style="padding:52px;text-align:center;">
-          <div style="font-size:40px;margin-bottom:16px;">✓</div>
-          <h3 style="font-size:20px;font-weight:700;color:#1A2E42;margin-bottom:12px;">Answers sent.</h3>
-          <p style="font-size:16px;font-weight:300;color:#4A6080;line-height:1.7;">
-            ${sendCopy ? 'Jessie will personally read your answers and reach out about next steps.' : 'A copy has been sent to your email.'}
-          </p>
-        </div>`;
+      document.querySelector('.submit-btn').closest('.card') 
+        ? document.querySelector('.submit-btn').closest('.card').querySelector('.checkbox-row').insertAdjacentHTML('afterend', `
+          <div id="confirm-msg" style="padding:24px;text-align:center;background:#F7F9FC;border-radius:8px;margin-top:16px;">
+            <div style="font-size:28px;margin-bottom:8px;">✓</div>
+            <p style="font-size:16px;font-weight:400;color:#1A2E42;margin-bottom:4px;">Answers sent.</p>
+            <p style="font-size:14px;font-weight:300;color:#4A6080;line-height:1.7;">
+              ${sendCopy ? 'Jessie will personally read your answers and reach out about next steps.' : 'A copy has been sent to your email.'}
+            </p>
+          </div>`)
+        : null;
+      btn.style.display = 'none';
 
       // Fire and forget
       fetch('https://hook.us1.make.com/dc221a2q1suj5tfspday6gfoitik7o06', {
