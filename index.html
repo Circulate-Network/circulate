@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-<!-- V3 | flow.html
+<!-- V4 | index.html
   - Fixed broken comment showing as visible text on page
   - Updated circulation logo to 4-arrow SVG
   - Removed "Independents - apart, together" from footer
   - Swapped Make webhook for Cloudflare Worker URL
+  - Removed mode: no-cors - Worker handles CORS, response is now readable
 -->
 <head>
   <meta charset="UTF-8">
@@ -1071,15 +1072,18 @@
           </p>
         </div>`;
 
-      // Fire and forget to Worker
-      fetch('https://circulate.jessieupp.workers.dev', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params.toString()
-      });
+      try {
+        const res = await fetch('https://circulate.jessieupp.workers.dev', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: params.toString()
+        });
+        if (!res.ok) console.error('Worker error:', await res.text());
+      } catch (err) {
+        console.error('Fetch failed:', err);
+      }
     }
   </script>
-<!-- V3 -->
+<!-- V4 -->
 </body>
 </html>
