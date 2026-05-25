@@ -1,5 +1,5 @@
-<!-- V6 | circulate.network/index.html
-  - Removed try/catch entirely - fire and forget fetch, show confirmation immediately
+<!-- V7 | circulate.network/index.html
+  - Show confirmation immediately before fetch resolves - true fire and forget
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -375,13 +375,7 @@
         body: body
       });
 
-      fetch('https://hook.us1.make.com/dc221a2q1suj5tfspday6gfoitik7o06', {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: params.toString()
-      });
-
+      // Show confirmation immediately - don't wait for fetch
       document.querySelector('.form-card').innerHTML = `
         <div style="padding:52px;text-align:center;">
           <div style="font-size:40px;margin-bottom:16px;">✓</div>
@@ -390,6 +384,14 @@
             ${sendCopy ? 'Jessie will personally read your answers and reach out about next steps.' : 'A copy has been sent to your email.'}
           </p>
         </div>`;
+
+      // Fire and forget
+      fetch('https://hook.us1.make.com/dc221a2q1suj5tfspday6gfoitik7o06', {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: params.toString()
+      });
     }
   </script>
 
