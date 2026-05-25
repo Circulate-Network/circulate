@@ -1,6 +1,5 @@
-<!-- V8 | circulate.network/index.html
-  - Fixed confirmation message - was targeting .form-card which doesn't exist in index.html
-  - Now inserts confirmation after checkbox row and hides submit button
+<!-- V9 | circulate.network/index.html
+  - Swapped Make webhook URL for Cloudflare Worker URL: circulate.jessieupp.workers.dev
 -->
 <!DOCTYPE html>
 <html lang="en">
@@ -389,7 +388,7 @@
       btn.style.display = 'none';
 
       // Fire and forget
-      fetch('https://hook.us1.make.com/dc221a2q1suj5tfspday6gfoitik7o06', {
+      fetch('https://circulate.jessieupp.workers.dev', {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
