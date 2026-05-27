@@ -43,12 +43,12 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg:       #0B0F1A;
-      --surface:  #141924;
-      --surface2: #1C2333;
-      --border:   #252D3D;
+      --bg:       #FFFFFF;
+      --surface:  #F7F9FC;
+      --surface2: #EEF2F7;
+      --border:   #DDE4EE;
       --text:     #FFFFFF;
-      --muted:    #94A3B8;
+      --muted:    #4A6080;
       --green:    #059669;
       --blue:     #3B82F6;
       --purple:   #8B5CF6;
@@ -57,8 +57,8 @@
     }
     html { scroll-behavior: smooth; }
     body {
-      background: var(--bg);
-      color: var(--text);
+      background: #FFFFFF;
+      color: #1A2E42;
       font-family: 'DM Sans', sans-serif;
       font-weight: 300;
       -webkit-font-smoothing: antialiased;
@@ -107,7 +107,7 @@
     .nav-wordmark {
       font-size: 18px;
       font-weight: 500;
-      color: var(--text);
+      color: #1A2E42;
       letter-spacing: -0.01em;
     }
     .nav-links {
@@ -123,7 +123,7 @@
       text-decoration: none;
       transition: color 0.2s;
     }
-    .nav-links a:hover { color: var(--text); }
+    .nav-links a:hover { color: #1A2E42; }
     .nav-cta {
       background: var(--text);
       color: var(--bg);
@@ -221,7 +221,7 @@
     .btn-primary:hover { background: #047857; transform: translateY(-1px); }
     .btn-outline {
       background: transparent;
-      color: var(--text);
+      color: #1A2E42;
       font-family: 'DM Sans', sans-serif;
       font-size: 16px;
       font-weight: 400;
@@ -434,7 +434,7 @@
       display: block;
       font-size: 16px;
       font-weight: 400;
-      color: var(--text);
+      color: #1A2E42;
       margin-bottom: 14px;
       line-height: 1.5;
     }
@@ -491,7 +491,7 @@
       font-family: 'DM Sans', sans-serif;
       font-size: 15px;
       font-weight: 300;
-      color: var(--text);
+      color: #1A2E42;
       resize: vertical;
       transition: border-color 0.2s;
       line-height: 1.6;
@@ -525,7 +525,7 @@
       gap: 6px;
       transition: border-color 0.2s;
     }
-    .btn-back:hover { border-color: var(--muted); color: var(--text); }
+    .btn-back:hover { border-color: var(--muted); color: #1A2E42; }
     .btn-next {
       background: var(--green);
       border: none;
@@ -546,7 +546,7 @@
       background: transparent;
       border: 1px solid var(--text);
       border-radius: 10px;
-      color: var(--text);
+      color: #1A2E42;
       font-family: 'DM Sans', sans-serif;
       font-size: 15px;
       font-weight: 500;
@@ -619,7 +619,7 @@
     .quote-block p {
       font-size: 16px;
       font-style: italic;
-      color: var(--text);
+      color: #1A2E42;
       line-height: 1.7;
       margin-bottom: 16px;
     }
@@ -628,7 +628,7 @@
       align-items: center;
       gap: 10px;
     }
-    .quote-attr strong { font-size: 14px; font-weight: 700; color: var(--text); }
+    .quote-attr strong { font-size: 14px; font-weight: 700; color: #1A2E42; }
     .quote-attr span { font-size: 13px; color: var(--muted); }
     .attr-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--muted); }
     .founder-card {
@@ -691,13 +691,13 @@
     .footer-wordmark {
       font-size: 16px;
       font-weight: 700;
-      color: var(--text);
+      color: #1A2E42;
     }
     .footer-sep { color: var(--border); }
     .footer-tagline { font-size: 13px; color: var(--muted); }
     .footer-links { display: flex; gap: 24px; }
     .footer-links a { font-size: 13px; color: var(--muted); text-decoration: none; transition: color 0.2s; }
-    .footer-links a:hover { color: var(--text); }
+    .footer-links a:hover { color: #1A2E42; }
     .footer-copy { font-size: 12px; color: var(--muted); }
 
     /* ---- RESPONSIVE ---- */
@@ -738,7 +738,7 @@
     .qa-modal h3 {
       font-size: 18px;
       font-weight: 700;
-      color: var(--text);
+      color: #1A2E42;
       margin-bottom: 6px;
     }
     .qa-hint {
@@ -760,7 +760,7 @@
     .qa-a {
       font-size: 15px;
       font-weight: 300;
-      color: var(--text);
+      color: #1A2E42;
       line-height: 1.6;
     }
     .qa-btn-row { display:flex; gap:12px; margin-top:24px; }
@@ -883,7 +883,6 @@
       <img src="https://raw.githubusercontent.com/Circulate-Network/circulate/refs/heads/main/images/Infographic%20for%20Circulate%20with%20Jessie%20Upp.png"
         alt="Circulate infographic"
         style="width:100%;display:block;border-radius:12px 12px 0 0;">
-      <div style="position:absolute;bottom:12px;right:16px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:400;color:rgba(255,255,255,0.35);letter-spacing:0.04em;pointer-events:none;user-select:none;">© 2026 Circulate Network</div>
     </div>
     <p class="hero-sub" style="max-width:700px;margin:36px auto 0;text-align:center;">
       The wellness coach needs an accountant. The accountant needs a mentor. The mentor needs a doctor. The doctor needs an architect. The architect needs a wellness coach. They're all <a href="#map">1 or 2 degrees</a> from each other - and most of them don't know it yet.
@@ -948,7 +947,7 @@
           </div>
 
           <div class="form-q">
-            <label>When did you last feel like your day was "on your terms"?</label>
+            <label>When did you last feel like your day was on your terms?</label>
             <div class="radio-group" id="rg1">
               <div class="radio-option" onclick="selectRadio('rg1',this,'Today or yesterday')">
                 <div class="radio-dot"></div><span>Today or yesterday</span>
@@ -1133,7 +1132,6 @@
             <ul class="founder-points">
               <li><span class="check">✓</span> One profile across all three tools</li>
               <li><span class="check">✓</span> 700+ people already circulating</li>
-              <li><span class="check">✓</span> Building toward member ownership</li>
             </ul>
           </div>
         </div>
@@ -1256,9 +1254,9 @@
       formCard.innerHTML = `
         <div id="confirm-msg" style="padding:52px;text-align:center;">
           <div style="font-size:40px;margin-bottom:16px;">✓</div>
-          <h3 style="font-size:20px;font-weight:700;color:#ffffff;margin-bottom:12px;">Answers sent.</h3>
+          <h3 style="font-size:20px;font-weight:700;color:#1A2E42;margin-bottom:12px;">Answers sent.</h3>
           <p style="font-size:16px;font-weight:300;color:#7A8AA0;line-height:1.7;">
-            ${sendCopy ? 'Jessie will personally read your answers and reach out about next steps.' : 'Your answers have been recorded.'}
+            
           </p>
         </div>`;
       setTimeout(() => {
